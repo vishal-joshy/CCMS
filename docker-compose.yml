@@ -1,0 +1,21 @@
+services:
+#  api:
+#    build:
+#      dockerfile: ./Dockerfile
+#    ports:
+#        - "8000:8080"
+#    volumes:
+#        - source: .
+#          target: /project
+#          type: bind
+
+  db:
+    image: postgres:14.4 
+    environment:
+      POSTGRES_PASSWORD: postgres
+#    volumes:
+#      - source: ./sql
+#        target: /docker-entrypoint-initdb.d
+#        type: bind
+    ports:
+      - "5432:5432"

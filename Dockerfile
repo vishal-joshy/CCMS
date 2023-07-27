@@ -1,4 +1,7 @@
-FROM openjdk:17
+FROM amazoncorretto:17-alpine3.18-jdk
 
 WORKDIR /project
-RUN microdnf install findutils
+
+CMD ["./gradlew","bootRun"]
+
+EXPOSE 8080
