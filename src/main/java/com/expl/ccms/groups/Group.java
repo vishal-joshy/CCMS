@@ -1,6 +1,10 @@
 package com.expl.ccms.groups;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.util.Date;
 
 @Entity
 @Table(name="Groups")
@@ -15,6 +19,10 @@ public class Group {
 
     private String name;
     private String description;
+    @CreationTimestamp
+    private Date createdOn;
+    @UpdateTimestamp
+    private Date updatedOn;
 
     protected Group(){
     }

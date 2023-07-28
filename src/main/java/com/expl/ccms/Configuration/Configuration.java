@@ -1,7 +1,10 @@
 package com.expl.ccms.Configuration;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
+import java.sql.Time;
 import java.util.Optional;
 
 @Entity
@@ -15,6 +18,10 @@ public class Configuration{
     private String description;
     private Long version;
     private String data;
+    @CreationTimestamp
+    private Time created_on;
+    @UpdateTimestamp
+    private Time updated_on;
 
 
     public Configuration(String key, Long group_id, String name, String description, Long version, String data) {
@@ -26,10 +33,16 @@ public class Configuration{
         this.data = data;
     }
 
+    protected Configuration(){
+
+    }
+
     public Long getId() {
         return id;
     }
-
+    public void setId(Long id) {
+        this.id = id;
+    }
     public String getKey() {
         return key;
     }
@@ -55,3 +68,4 @@ public class Configuration{
     }
 
 }
+

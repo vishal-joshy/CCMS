@@ -14,7 +14,26 @@ public class ConfigurationService{
         this.configurationRepository=configurationRepository;
     }
 
-    public List<Configuration> getConfigurations(){
-        return configurationRepository.findAllByGroupId(1L);
+    public List<Configuration> getConfigurations(Long groupId){
+        return configurationRepository.findAllByGroupId(groupId);
+    }
+
+    public void addConfiguration(Configuration configuration) {
+        configurationRepository.save(configuration);
+    }
+
+    public void updateConfiguration(Long id,Configuration configuration){
+        boolean exists = configurationRepository.existsById(id);
+        if(!exists){
+            throw new IllegalStateException(
+                    "Configuration with id " + id + "does not exist."
+            );
+        }
+        configuration.setId(id);
+        configurationRepository.save(configuration);
+    }
+
+    public void deleteConfiguration(Long configurationId) {
+        configurationRepository.deleteById(configurationId);
     }
 }
