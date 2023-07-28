@@ -1,10 +1,15 @@
 package com.expl.ccms.Configuration;
 
+import com.expl.ccms.Utils.HashMapConverter;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.io.IOException;
 import java.sql.Time;
+import java.util.Map;
 import java.util.Optional;
 
 @Entity
@@ -17,14 +22,15 @@ public class Configuration{
     private String name;
     private String description;
     private Long version;
-    private String data;
+    @Convert(converter = HashMapConverter.class)
+    private Map<String,Object> data;
     @CreationTimestamp
     private Time created_on;
     @UpdateTimestamp
     private Time updated_on;
 
 
-    public Configuration(String key, Long group_id, String name, String description, Long version, String data) {
+    public Configuration(String key, Long group_id, String name, String description, Long version, Map<String,Object> data) {
         this.key = key;
         this.groupId = group_id;
         this.name = name;
@@ -36,6 +42,11 @@ public class Configuration{
     protected Configuration(){
 
     }
+
+    public void serializeAttributes() throws JsonProcessingException {
+
+    }
+
 
     public Long getId() {
         return id;
@@ -63,7 +74,7 @@ public class Configuration{
         return version;
     }
 
-    public String getData() {
+    public Map<String,Object> getData() {
         return data;
     }
 
