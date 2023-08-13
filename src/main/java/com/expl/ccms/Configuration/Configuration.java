@@ -10,12 +10,11 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.io.IOException;
 import java.sql.Time;
 import java.util.Map;
-import java.util.Optional;
 
 @Entity
 public class Configuration{
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String key;
     private Long groupId;
