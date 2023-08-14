@@ -21,8 +21,13 @@ public class GroupService {
         return groupRepository.findAll();
     }
 
-    public Optional<Group> getGroup(Long id) {
-        return Optional.ofNullable(groupRepository.findById(id).orElse(null));
+    public Group getGroup(Long id) {
+        Optional<Group> group = groupRepository.findById(id);
+        if (group.isPresent()){
+            return group.get();
+        }else {
+            throw new NoSuchElementException("Group with id"+ id +" not found.");
+        }
     }
 
     public void addGroup(Group group) {

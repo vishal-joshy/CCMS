@@ -31,8 +31,8 @@ public class GroupController {
 
     @GetMapping("/groups/{id}")
     public ResponseEntity<Group> getGroup(@PathVariable("id") Long id) {
-            Optional<Group> group = groupService.getGroup(id);
-            return new ResponseEntity<>(group.get(), HttpStatus.CREATED);
+            Group group = groupService.getGroup(id);
+            return new ResponseEntity<>(group, HttpStatus.CREATED);
     }
 
     @PostMapping("/groups")
