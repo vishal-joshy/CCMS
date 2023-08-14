@@ -23,10 +23,10 @@ public class GroupService {
 
     public Group getGroup(Long id) {
         Optional<Group> group = groupRepository.findById(id);
-        if (group.isPresent()){
+        if (group.isPresent()) {
             return group.get();
-        }else {
-            throw new NoSuchElementException("Group with id"+ id +" not found.");
+        } else {
+            throw new NoSuchElementException("Group with id" + id + " not found.");
         }
     }
 
@@ -41,26 +41,25 @@ public class GroupService {
 
     public void updateGroup(Group group, Long id) {
         Group groupNameData = groupRepository.findByName(group.getName());
-        if(groupNameData != null){
+        if (groupNameData != null) {
             throw new DuplicateKeyException("Group name must be unique");
-        }else {
+        } else {
             Optional<Group> groupIdData = groupRepository.findById(id);
-            if(groupIdData.isPresent()){
+            if (groupIdData.isPresent()) {
                 group.setId(id);
                 groupRepository.save(group);
-            }
-           else {
-               throw new NoSuchElementException("Group with id"+id+" not found");
+            } else {
+                throw new NoSuchElementException("Group with id" + id + " not found");
             }
         }
     }
 
     public void deleteGroup(Long id) {
         Optional<Group> group = groupRepository.findById(id);
-        if(group.isPresent()){
+        if (group.isPresent()) {
             groupRepository.deleteById(id);
         } else {
-            throw new NoSuchElementException("Group with id:"+id+" doesn't exist");
+            throw new NoSuchElementException("Group with id:" + id + " doesn't exist");
         }
 
     }

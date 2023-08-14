@@ -12,18 +12,20 @@ import java.util.NoSuchElementException;
 @ControllerAdvice
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(value = DuplicateKeyException.class)
-    public ResponseEntity<Object> handleDuplicateKey(Exception e){
+    public ResponseEntity<Object> handleDuplicateKey(Exception e) {
         CustomException customException = new CustomException(e.getMessage());
-        return new ResponseEntity<>(customException,HttpStatus.CONFLICT);
+        return new ResponseEntity<>(customException, HttpStatus.CONFLICT);
     }
+
     @ExceptionHandler(value = NoSuchElementException.class)
-    public ResponseEntity<Object> handleNoSuchElement(Exception e){
-        CustomException customException= new CustomException(e.getMessage());
-        return new ResponseEntity<>(customException,HttpStatus.NOT_FOUND);
+    public ResponseEntity<Object> handleNoSuchElement(Exception e) {
+        CustomException customException = new CustomException(e.getMessage());
+        return new ResponseEntity<>(customException, HttpStatus.NOT_FOUND);
     }
+
     @ExceptionHandler(value = RuntimeException.class)
-    public ResponseEntity<Object> handleInternalServerError(Exception e){
-        CustomException customException= new CustomException(e.getMessage());
-        return new ResponseEntity<>(customException,HttpStatus.INTERNAL_SERVER_ERROR);
+    public ResponseEntity<Object> handleInternalServerError(Exception e) {
+        CustomException customException = new CustomException(e.getMessage());
+        return new ResponseEntity<>(customException, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

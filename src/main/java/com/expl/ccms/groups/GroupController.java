@@ -22,17 +22,17 @@ public class GroupController {
 
     @GetMapping("/groups")
     public ResponseEntity<List<Group>> getGroups() {
-            List<Group> groups = groupService.getGroups();
-            if (groups.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(groups, HttpStatus.OK);
+        List<Group> groups = groupService.getGroups();
+        if (groups.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(groups, HttpStatus.OK);
     }
 
     @GetMapping("/groups/{id}")
     public ResponseEntity<Group> getGroup(@PathVariable("id") Long id) {
-            Group group = groupService.getGroup(id);
-            return new ResponseEntity<>(group, HttpStatus.CREATED);
+        Group group = groupService.getGroup(id);
+        return new ResponseEntity<>(group, HttpStatus.CREATED);
     }
 
     @PostMapping("/groups")
@@ -43,13 +43,13 @@ public class GroupController {
 
     @PutMapping(path = "/groups/{id}")
     public ResponseEntity<Group> updateGroup(@RequestBody Group groupFormData, @PathVariable("id") Long id) {
-            groupService.updateGroup(groupFormData, id);
-            return new ResponseEntity<>(HttpStatus.OK);
+        groupService.updateGroup(groupFormData, id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping(path = "/groups/{id}")
     public ResponseEntity<HttpStatus> deleteGroup(@PathVariable("id") Long id) {
-            groupService.deleteGroup(id);
-            return new ResponseEntity<>(HttpStatus.OK);
+        groupService.deleteGroup(id);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

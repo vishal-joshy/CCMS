@@ -7,7 +7,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.util.Date;
 
 @Entity
-@Table(name="Groups")
+@Table(name = "Groups")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,20 +24,23 @@ public class Group {
     @UpdateTimestamp
     private Date updatedOn;
 
-    protected Group(){
+    protected Group() {
     }
-    public Group(String name,String description){
-        this.name=name;
-        this.description=description;
+
+    public Group(String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public long getId() {
         return id;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public String getDescription(){
-       return description;
+
+    public String getDescription() {
+        return description;
     }
 }
