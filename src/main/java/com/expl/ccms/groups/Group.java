@@ -6,6 +6,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
+
 @Entity
 @Table(name = "Groups")
 public class Group {
@@ -16,7 +17,7 @@ public class Group {
     public void setId(Long id) {
         this.id = id;
     }
-
+    @Column(nullable = false,unique = true)
     private String name;
     private String description;
     @CreationTimestamp

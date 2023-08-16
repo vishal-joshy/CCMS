@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class ConfigurationService{
@@ -25,15 +26,17 @@ public class ConfigurationService{
     public void updateConfiguration(Long id,Configuration configuration){
         boolean exists = configurationRepository.existsById(id);
         if(!exists){
-            throw new IllegalStateException(
-                    "Configuration with id " + id + "does not exist."
-            );
+            throw new NoSuchElementException("Configuration with id "+id+"not found");
         }
         configuration.setId(id);
         configurationRepository.save(configuration);
     }
 
-    public void deleteConfiguration(Long configurationId) {
-        configurationRepository.deleteById(configurationId);
+    public void deleteConfiguration(Long id) {
+        boolean exists = configurationRepository.existsById(id);
+        if(!exists){
+            throw new NoSuchElementException("Configuration with id "+id +"not found");
+        }
+        configurationRepository.deleteById(id);
     }
 }
