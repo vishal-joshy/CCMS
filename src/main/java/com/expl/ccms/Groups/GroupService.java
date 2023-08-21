@@ -33,7 +33,7 @@ public class GroupService {
     public void addGroup(Group group) {
         Group groupData = groupRepository.findByName(group.getName());
         if (groupData != null) {
-            throw new DuplicateKeyException("Group with" + group.getName() + " already exists");
+            throw new DuplicateKeyException("Group with name" + group.getName() + " already exists");
         } else {
             groupRepository.save(group);
         }
@@ -61,6 +61,5 @@ public class GroupService {
         } else {
             throw new NoSuchElementException("Group with id:" + id + " doesn't exist");
         }
-
     }
 }
