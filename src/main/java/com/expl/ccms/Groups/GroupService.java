@@ -1,4 +1,4 @@
-package com.expl.ccms.groups;
+package com.expl.ccms.Groups;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;

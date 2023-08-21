@@ -1,4 +1,4 @@
-package com.expl.ccms.groups;
+package com.expl.ccms.Groups;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;

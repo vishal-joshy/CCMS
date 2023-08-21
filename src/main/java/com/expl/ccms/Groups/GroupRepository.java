@@ -1,10 +1,7 @@
-package com.expl.ccms.groups;
+package com.expl.ccms.Groups;
 
-import com.expl.ccms.Configuration.Configuration;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 
 @Repository

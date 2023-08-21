@@ -13,25 +13,25 @@ public class HashMapConverter implements AttributeConverter<Map<String, Object>,
     private final ObjectMapper objectMapper= new ObjectMapper();
 
     @Override
-    public String convertToDatabaseColumn(Map<String, Object> customerInfo) {
+    public String convertToDatabaseColumn(Map<String, Object> data) {
 
-        String customerInfoJson = null;
+        String dataJson = null;
         try {
-            customerInfoJson = objectMapper.writeValueAsString(customerInfo);
+            dataJson = objectMapper.writeValueAsString(data);
         } catch (final JsonProcessingException e) {
         }
-        return customerInfoJson;
+        return dataJson;
     }
 
     @Override
-    public Map<String, Object> convertToEntityAttribute(String customerInfoJSON) {
+    public Map<String, Object> convertToEntityAttribute(String dataJson) {
 
-        Map<String, Object> customerInfo = null;
+        Map<String, Object> data = null;
         try {
-            customerInfo = objectMapper.readValue(customerInfoJSON,
+            data = objectMapper.readValue(dataJson,
                     new TypeReference<HashMap<String, Object>>() {});
         } catch (final IOException e) {
         }
-        return customerInfo;
+        return data;
     }
 }

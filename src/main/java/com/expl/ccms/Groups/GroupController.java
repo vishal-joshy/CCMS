@@ -1,17 +1,14 @@
-package com.expl.ccms.groups;
+package com.expl.ccms.Groups;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping(path = "api")
+@RequestMapping(path = "api/groups")
 public class GroupController {
     private final GroupService groupService;
 
@@ -20,7 +17,7 @@ public class GroupController {
         this.groupService = groupService;
     }
 
-    @GetMapping("/groups")
+    @GetMapping("/")
     public ResponseEntity<List<Group>> getGroups() {
         List<Group> groups = groupService.getGroups();
         if (groups.isEmpty()) {
@@ -29,25 +26,25 @@ public class GroupController {
         return new ResponseEntity<>(groups, HttpStatus.OK);
     }
 
-    @GetMapping("/groups/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Group> getGroup(@PathVariable("id") Long id) {
         Group group = groupService.getGroup(id);
-        return new ResponseEntity<>(group, HttpStatus.CREATED);
+        return new ResponseEntity<>(group, HttpStatus.OK);
     }
 
-    @PostMapping("/groups")
+    @PostMapping("/")
     public ResponseEntity<Group> addNewGroup(@RequestBody Group group) {
         groupService.addGroup(group);
         return new ResponseEntity<>(group, HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/groups/{id}")
+    @PutMapping(path = "/{id}")
     public ResponseEntity<Group> updateGroup(@RequestBody Group groupFormData, @PathVariable("id") Long id) {
         groupService.updateGroup(groupFormData, id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "/groups/{id}")
+    @DeleteMapping(path = "/{id}")
     public ResponseEntity<HttpStatus> deleteGroup(@PathVariable("id") Long id) {
         groupService.deleteGroup(id);
         return new ResponseEntity<>(HttpStatus.OK);
