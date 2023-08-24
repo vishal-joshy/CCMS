@@ -1,15 +1,13 @@
-package com.expl.ccms.Overrides;
+package com.expl.ccms.ConfigurationOverrides;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
-public class Override {
+@Entity
+public class ConfigurationOverride {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -24,4 +22,11 @@ public class Override {
     private Date createdOn;
     @UpdateTimestamp
     private Date updatedOn;
+
+    public Long getVersion() {
+        return version;
+    }
+    public void setVersion(Long version) {
+        this.version = version;
+    }
 }
