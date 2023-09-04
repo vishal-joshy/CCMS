@@ -1,6 +1,5 @@
 package com.expl.ccms.Configuration;
 
-import com.expl.ccms.ConfigurationOverrides.ConfigurationOverride;
 import com.expl.ccms.ConfigurationOverrides.ConfigurationOverridesRepository;
 import com.expl.ccms.Groups.Group;
 import com.expl.ccms.Groups.GroupService;
@@ -25,26 +24,15 @@ public class ConfigurationService{
         this.groupService = groupService;
     }
 
-    public Optional<Configuration> getConfigurations(Long groupId){
-        //check if group exists
-        Group group = groupService.getGroup(groupId);
-        List<Configuration> configurations = configurationRepository.findAll();
-        ConfigurationId configurationId = new ConfigurationId(groupId,"metrics");
-        return configurationRepository.findById(configurationId);
-    }
-
     public Configuration getConfiguration(Long groupId, String key, Optional<Long> serviceId){
         Group group = groupService.getGroup(groupId);
-
-        if(serviceId.isPresent()){
-            ConfigurationOverride override = configurationOverridesRepository.findAllByGroupIdAndServiceId(groupId,serviceId);
-            System.out.println(override);
-            //get configuration key from override repository
-            // return configuration of latest version
+        List<Configuration> configurations = configurationRepository.findAll();
+        ConfigurationId configurationId = new ConfigurationId(groupId,key);
+        Optional<Configuration> configuration = configurationRepository.findById(configurationId);
+        if(configuration.isEmpty()){
+            throw new NoSuchElementException("Configuration does not exist");
         }
-
-        // check for latest version, if override exists get latest version of override
-        return null;
+        return configuration.get();
     }
 
     public void addConfiguration(Configuration configuration) {

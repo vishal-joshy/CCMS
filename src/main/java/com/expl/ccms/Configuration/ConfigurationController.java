@@ -18,19 +18,8 @@ public class ConfigurationController {
         this.configService = configService;
     }
 
-    @GetMapping("/")
-    public ResponseEntity<Optional<Configuration>> getConfigurations(@PathVariable("group_id") Long groupId) {
-        Optional<Configuration> configurations = configService.getConfigurations(groupId);
-        System.out.println(configurations);
-        if (configurations.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(configurations, HttpStatus.OK);
-    }
-
     @GetMapping("/{key}")
     public ResponseEntity<Configuration> getConfiguration(@PathVariable("group_id") Long groupId, @PathVariable String key, @RequestParam Optional<Long> serviceId){
-        //check if there is override with service id , else return based on group id and key
         Configuration configuration= configService.getConfiguration(groupId,key,serviceId);
         return new ResponseEntity<>(configuration,HttpStatus.OK);
     }
